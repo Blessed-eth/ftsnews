@@ -157,3 +157,23 @@ const cards1 = document.querySelectorAll(".card");
       event.preventDefault();
     });
   });
+
+  // INFINITE SLIDER //
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const slideTracks = document.querySelectorAll(".slide-track");
+
+    slideTracks.forEach((slideTrack) => {
+      const cards = slideTrack.querySelectorAll(".card");
+
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          slideTrack.style.animationPlayState = "paused"; // Pause animation on hover
+        });
+
+        card.addEventListener("mouseleave", () => {
+          slideTrack.style.animationPlayState = "running"; // Resume animation when not hovered
+        });
+      });
+    });
+  });

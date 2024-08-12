@@ -1,0 +1,177 @@
+/* infinite_slider.css */
+
+/* Global Styles Specific to Slider */
+.slider-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+  }
+  
+  .scrollport {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .slide-track {
+    display: flex;
+    animation: scroll 15s linear infinite;
+    transition: all 0.5s ease;
+  }
+  
+  .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 30vh;
+    background-color: transparent;
+    border-radius: 40px;
+    border: none;
+    overflow: hidden;
+    margin-right: 20px; /* Space between cards */
+    transition: transform 0.3s ease;
+  }
+  
+  .visible-pic {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: opacity 0.6s ease;
+    border-radius: 40px;
+  }
+  
+  .reveal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6); /* Add transparency */
+    height: 100%;
+    width: 100%;
+    border: 4px solid #1e1e1e;
+    transition: all 0.6s cubic-bezier(0.745, 0.11, 0.35, 0.845);
+  }
+  
+  .pic {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 10;
+    opacity: 0;
+  }
+  
+  .reveal:hover .pic {
+    opacity: 0; /* Remains 0 since pic is under reveal logic */
+  }
+  
+  .reveal:hover {
+    opacity: 1;
+    background-color: #000; /* Darkens on hover */
+  }
+  
+  .card:hover .visible-pic {
+    opacity: 0; /* Fade out the visible image on hover */
+  }
+  
+  h3,
+  h4,
+  h5,
+  .footer {
+    position: relative;
+    z-index: 5;
+    color: #fff;
+    text-align: center;
+    transition: opacity 0.6s ease;
+    opacity: 0; /* Initially hide text */
+  }
+  
+  .reveal:hover h3,
+  .reveal:hover h4,
+  .reveal:hover h5,
+  .reveal:hover .footer {
+    opacity: 1; /* Show text on hover */
+  }
+  
+  h3 {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 55px;
+  }
+  
+  h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: auto;
+  }
+  
+  h5 {
+    font-size: 30px;
+  }
+  
+  .footer {
+    font-size: 10px;
+    margin-top: auto;
+    padding-bottom: 15px;
+  }
+  
+  /* Infinite Scroll Animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-650px * 3)); /* Width of each card times the number of original cards */
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card {
+      width: 40vw;
+      height: auto;
+    }
+  
+    h1 {
+      font-size: 40px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    h3 {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      width: 100vw;
+      height: auto;
+    }
+  
+    h1 {
+      font-size: 30px;
+    }
+  
+    h2 {
+      font-size: 18px;
+    }
+  
+    h3 {
+      font-size: 20px;
+    }
+  }
